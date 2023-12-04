@@ -4,8 +4,7 @@
     "autoload": {
         "psr-4": {
             "Hasinur\\Qpos\\": "includes/"
-        },
-        "classmap": ["functions.php"]
+        }
     },
     "authors": [
         {
