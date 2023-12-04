@@ -1,0 +1,17 @@
+{
+    "name": "hasinur/qpos",
+    "description": "A point sale plugin for woocommerce",
+    "autoload": {
+        "psr-4": {
+            "Hasinur\\Qpos\\": "includes/"
+        },
+        "classmap": ["functions.php"]
+    },
+    "authors": [
+        {
+            "name": "Hasinur Rahman",
+            "email": "hasinurrahman3@gmail.com"
+        }
+    ],
+    "require": {}
+}
