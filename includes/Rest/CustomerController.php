@@ -6,7 +6,6 @@
  */
 namespace Hasinur\Qpos\Rest;
 
-use WC_REST_Controller;
 use WC_REST_Customers_Controller;
 use WP_REST_Server;
 
@@ -74,9 +73,6 @@ class CustomerController extends WC_REST_Customers_Controller {
      * @return  \WP_Error | WP_Response
      */
     public function get_customers( $request ) {
-        $customers  = $this->get_items( $request );
-
-        error_log(print_r($customers, true));
-        return $customers;
+        return $this->get_items( $request );
     }
 }
