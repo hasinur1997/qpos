@@ -15,9 +15,6 @@
  * Domain Path:       /languages
  */
 
-use Hasinur\Qpos\Frontend;
-use Hasinur\Qpos\Rest\Manager;
-
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
@@ -26,7 +23,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 /**
  * Qpos Class
- * 
+ *
  * @class Qpos The class that holds the entire Qpos plugin
  */
 final class Qpos {
@@ -47,16 +44,16 @@ final class Qpos {
     /**
      * Constructor for the Qpos class
      *
-     * @return 
+     * @return
      */
     public function __construct() {
         $this->define_constants();
 
-        add_action( 'init', [ $this, 'add_rewrite_rules' ] );
+        add_action( 'init', [$this, 'add_rewrite_rules'] );
 
-        add_filter( 'query_vars', [ $this, 'register_query_var' ] );
+        add_filter( 'query_vars', [$this, 'register_query_var'] );
 
-        add_action( 'woocommerce_loaded', [ $this, 'init_plugin' ] );
+        add_action( 'woocommerce_loaded', [$this, 'init_plugin'] );
     }
 
     /**
@@ -99,7 +96,7 @@ final class Qpos {
         define( 'QPOS_FILE', __FILE__ );
         define( 'QPOS_PATH', dirname( QPOS_FILE ) );
         define( 'QPOS_INCLUDES', QPOS_PATH . '/includes' );
-        define( 'QPOS_URL', plugins_url('', QPOS_FILE ) );
+        define( 'QPOS_URL', plugins_url( '', QPOS_FILE ) );
         define( 'QPOS_ASSETS', QPOS_URL . '/assets' );
     }
 
@@ -120,12 +117,13 @@ final class Qpos {
     }
 
     public function init_hooks() {
-        add_action( 'init', [ $this, 'init_classes' ] );
+        add_action( 'init', [$this, 'init_classes'] );
     }
 
     public function init_classes() {
-        $this->container['frontend'] = new Frontend();
-        $this->container['rest'] = new Manager();
+        $this->container['frontend'] = new \Hasinur\Qpos\Frontend;
+        $this->container['rest']     = new \Hasinur\Qpos\Rest\Manager();
+        $this->container['gateways'] = new \Hasinur\Qpos\Gateways\Manager();
     }
 
     public function includes() {
@@ -137,7 +135,7 @@ final class Qpos {
      *
      * @param   array  $vars
      *
-     * @return  array 
+     * @return  array
      */
     public function register_query_var( $vars ) {
         $vars[] = 'qpos';
@@ -147,7 +145,7 @@ final class Qpos {
 }
 
 function qpos() {
-    Qpos::init();
+    return Qpos::init();
 }
 
 // Kick off plugin.

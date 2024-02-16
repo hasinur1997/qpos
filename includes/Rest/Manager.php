@@ -30,6 +30,7 @@ class Manager {
         return [
             ProductController::class,
             CustomerController::class,
+            PaymentController::class,
         ];
     }
 
