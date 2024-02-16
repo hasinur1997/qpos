@@ -8,8 +8,8 @@
     <?php wp_head(); ?>
 </head>
 <body>
-    <h2>QPOS</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea odit velit nemo adipisci corporis. Fugit, atque, ad necessitatibus hic laudantium eos doloribus voluptates amet corrupti distinctio in iste quidem modi.</p>
+    <div id="qpos-frontend-app"></div>
+    
     <?php qpos_footer(); ?>
 </body>
 </html>

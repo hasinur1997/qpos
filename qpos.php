@@ -124,6 +124,7 @@ final class Qpos {
         $this->container['frontend'] = new \Hasinur\Qpos\Frontend;
         $this->container['rest']     = new \Hasinur\Qpos\Rest\Manager();
         $this->container['gateways'] = new \Hasinur\Qpos\Gateways\Manager();
+        $this->container['assets']   = new \Hasinur\Qpos\Assets();
     }
 
     public function includes() {
