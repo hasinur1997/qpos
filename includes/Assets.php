@@ -9,9 +9,9 @@ class Assets {
     function __construct() {
 
         if ( is_admin() ) {
-            add_action( 'admin_enqueue_scripts', [ $this, 'register' ], 5 );
+            add_action( 'admin_enqueue_scripts', [$this, 'register'], 5 );
         } else {
-            add_action( 'qpos_enqueue_scripts', [ $this, 'register' ], 5 );
+            add_action( 'qpos_enqueue_scripts', [$this, 'register'], 5 );
         }
     }
 
@@ -67,8 +67,8 @@ class Assets {
     public function get_scripts() {
         global $wp_version;
 
-        $prefix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-        $dependency = [ 'jquery', 'wepos-i18n-jed' ];
+        $prefix     = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+        $dependency = ['jquery', 'wepos-i18n-jed'];
 
         if ( version_compare( $wp_version, '5.0', '<' ) ) {
             $dependency[] = 'wepos-wp-hook';
@@ -79,16 +79,16 @@ class Assets {
         }
 
         $scripts = [
-            
+
             'qpos-frontend' => [
-                'src'       => QPOS_ASSETS . '/js/frontend'. $prefix .'.js',
-                'version'   => filemtime( QPOS_PATH . '/assets/js/frontend'. $prefix .'.js' ),
-                'in_footer' => true
+                'src'       => QPOS_ASSETS . '/js/frontend' . $prefix . '.js',
+                'version'   => filemtime( QPOS_PATH . '/assets/js/frontend' . $prefix . '.js' ),
+                'in_footer' => true,
             ],
-            'qpos-admin' => [
-                'src'       => QPOS_ASSETS . '/js/admin'. $prefix .'.js',
-                'version'   => filemtime( QPOS_PATH . '/assets/js/admin'. $prefix .'.js' ),
-                'in_footer' => true
+            'qpos-admin'    => [
+                'src'       => QPOS_ASSETS . '/js/admin' . $prefix . '.js',
+                'version'   => filemtime( QPOS_PATH . '/assets/js/admin' . $prefix . '.js' ),
+                'in_footer' => true,
             ],
         ];
 
@@ -104,7 +104,10 @@ class Assets {
         $prefix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
         $styles = [
-            
+            'qpos-frontend' => [
+                'src'     => QPOS_ASSETS . '/css/qpos-frontend.css',
+                'version' => time(),
+            ],
         ];
 
         return $styles;
@@ -114,10 +117,11 @@ class Assets {
         if ( ! is_admin() ) {
             // Enqueue all style
 
-            // Load scripts            
+            // Load scripts
             do_action( 'qpos_load_forntend_scripts' );
 
             wp_enqueue_script( 'qpos-frontend' );
+            wp_enqueue_style( 'qpos-frontend' );
         }
     }
 
@@ -129,10 +133,10 @@ class Assets {
      * @return void
      */
     public function register_localize() {
-        
+
     }
 
-     /**
+    /**
      * SPA Routes
      *
      * @return array
@@ -142,7 +146,7 @@ class Assets {
             array(
                 'path'      => '/settings',
                 'name'      => 'Settings',
-                'component' => 'Settings'
+                'component' => 'Settings',
             ),
         );
 

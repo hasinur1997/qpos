@@ -1,6 +1,11 @@
+import Pos from "./components/Pos";
+import CartProvider from "./provider/CartProvider";
+
 function App() {
    return (
-    <h1>Hellp</h1>
+      <CartProvider>
+         <Pos/>
+      </CartProvider>   
    );
 }
 

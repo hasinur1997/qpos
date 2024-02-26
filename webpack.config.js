@@ -13,6 +13,12 @@ module.exports = {
         path: exportPath,
         filename: '[name].js'
     },
+    resolve: {
+        alias: {
+            frontend: path.resolve(__dirname, 'assets/src/frontend/'),
+            admin: path.resolve(__dirname, 'assets/src/admin/'),
+        }
+    },
     module: {
         rules: [
             {
